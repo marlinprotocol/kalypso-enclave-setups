@@ -1,0 +1,23 @@
+{
+  "runtime_config": {
+    "noir_circuit_path": "./sha256noir/",
+    "board_circuit_path": "./board/",
+    "shot_circuit_path": "./shot/",
+    "ws_url": "wss://arb-sepolia.g.alchemy.com/v2/HRgHr93dID1CdtMKBF0P8Khafl5MHYaN/",
+    "http_url": "https://arb-sepolia.g.alchemy.com/v2/HRgHr93dID1CdtMKBF0P8Khafl5MHYaN",
+    "private_key": "0x0db6072bd69de885b93a846133dc22cde7b612f55022fc5d6a2e492e0e61698d",
+    "start_block": 3194382,
+    "chain_id": 421614,
+    "params_path": "./params/",
+    "payment_token": "0xDa25fF5adCa83e38CAA78ACC03046C59315457f4",
+    "staking_token": "0xb2d1265c3B638958Fd91EefF8267b3dF0b23fF7b",
+    "generator_registry": "0xaDF6a4858f22C7fDfc56885E35A9D12E67553d96",
+    "attestation_verifier": "0x398d55904A8fFf1cEb2b639cE854fc58c0305515",
+    "entity_registry": "0x6CEa4be917D3f58ea19358044A43fE7195c9c047",
+    "proof_market_place": "0x5cc413E6eC01Cf923DcBb4E98010DF53686Dd756",
+    "transfer_verifier_wrapper": "0xD7996353Bb1312F160f47e2C85174A83D3Ef7Ec6",
+    "zkb_verifier_wrapper": "0x4c97BEa5F37B21b3BEa5E6d0316352D4b8eBA20e",
+    "priority_list": "0x83C7F3bd2C2313b6FBA7474134461676c0fB32cd",
+    "input_and_proof_format": "0xd34748D0614d9bfC7e9011FeEA3AF33651dad066"
+  }
+}

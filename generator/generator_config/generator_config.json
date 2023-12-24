@@ -1,0 +1,13 @@
+{
+  "generator_config": [
+    {
+      "address": "0xbCa21b37A139723F5546b5951f00B42e8E9a7D85",
+      "ecies_private_key": "0db6072bd69de885b93a846133dc22cde7b612f55022fc5d6a2e492e0e61698d",
+      "data": "zkb-demo-gen-1",
+      "staked_amount": "1000000000000000000001",
+      "supported_markets": [
+        "0x07b7d625c70be57115ab18fc435ed0253425671cb91bd6547b7defbc75f52082"
+      ]
+    }
+  ]
+}
