@@ -17,7 +17,6 @@ iptables -L -t nat
 /app/keygen --secret /app/id.sec --public /app/id.pub
 /app/oyster-keygen --secretpath /app/secp.sec
 
-ls 
 ls /params
 
 # starting supervisord

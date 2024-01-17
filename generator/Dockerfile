@@ -4,8 +4,7 @@ FROM alpine:3.17
 # install dependency tools
 RUN apk add --no-cache net-tools iptables iproute2 wget
 
-COPY generator_config ./generator_config
-COPY transfer_params_prod.bin ./params/
+COPY transfer_params.bin ./params/transfer_params_prod.bin
 
 # working directory
 WORKDIR /app
@@ -44,10 +43,18 @@ COPY supervisord.conf /etc/supervisord.conf
 COPY setup.sh ./
 RUN chmod +x setup.sh
 
-# generator-used for generating zkproof
-COPY kalypso-generator-client ./
-RUN chmod +x kalypso-generator-client
+#attestation utility
+COPY oyster-attestation-utility ./
+RUN chmod +x oyster-attestation-utility
 
+# generator-client api server
+## used for generating/updating the config files and managing(start/stop/restart) the zk-proof generator
+COPY generator-client ./
+RUN chmod +x generator-client
+
+# generator-used for generating zkproof
+COPY kalypso-generator ./
+RUN chmod +x kalypso-generator
 
 # entry point
 ENTRYPOINT [ "/app/setup.sh" ]
