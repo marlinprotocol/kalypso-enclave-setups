@@ -35,7 +35,6 @@ RUN wget -O oyster-keygen http://public.artifacts.marlin.pro/projects/enclaves/o
 RUN chmod +x oyster-keygen
 
 RUN wget -O ollama https://ollama.ai/download/ollama-linux-amd64
-COPY ollama ./
 RUN chmod +x ollama
 
 # supervisord config
