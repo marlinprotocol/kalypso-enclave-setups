@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # setting an address for loopback
 ifconfig lo 127.0.0.1
