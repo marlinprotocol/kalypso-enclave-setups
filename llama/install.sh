@@ -99,7 +99,7 @@ Description=Ollama Service
 After=network-online.target
 
 [Service]
-ExecStart=$BINDIR/ollama pull llama2 && $BINDIR/ollama serve
+ExecStart=$BINDIR/ollama serve
 User=ollama
 Group=ollama
 Restart=always
@@ -147,6 +147,7 @@ fi
 if ! check_gpu lspci && ! check_gpu lshw; then
     install_success
     warning "No NVIDIA GPU detected. Ollama will run in CPU-only mode."
+    $BINDIR/ollama serve
     exit 0
 fi
 
