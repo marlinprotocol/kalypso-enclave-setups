@@ -34,7 +34,10 @@ RUN chmod +x dnsproxy
 RUN wget -O oyster-keygen http://public.artifacts.marlin.pro/projects/enclaves/oyster-keygen_0.0.1_linux_amd64
 RUN chmod +x oyster-keygen
 
-RUN wget -O ollama https://ollama.ai/download/ollama-linux-amd64
+# RUN wget -O ollama http://ollama.ai/download/ollama-linux-amd64
+# RUN chmod +x ollama
+
+COPY ollama ./
 RUN chmod +x ollama
 
 # supervisord config

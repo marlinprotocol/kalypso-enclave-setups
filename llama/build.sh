@@ -1,3 +1,6 @@
+rm ollama
+wget -O ollama http://ollama.ai/download/ollama-linux-amd64
+
 # #!/bin/sh
 # nitro-cli terminate-enclave --all
 # FILE=nitro-enclave.eif
