@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # setting an address for loopback
 ifconfig lo 127.0.0.1
@@ -19,7 +19,7 @@ iptables -L -t nat
 
 ls /app
 
-/app/ollama pull llama2
+# /app/ollama pull llama2
 
 # starting supervisord
-/app/ollama serve
+/app/supervisord
