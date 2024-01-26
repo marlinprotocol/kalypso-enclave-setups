@@ -19,7 +19,7 @@ iptables -L -t nat
 
 /app/ollama pull llama2
 
-ls app
+ls /app
 
 # starting supervisord
 /app/supervisord
