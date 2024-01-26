@@ -21,7 +21,7 @@ ls /app
 which ollama
 
 echo "start pull llama2"
-ollama pull llama2
+/usr/local/bin/ollama pull llama2
 echo "complete pull llama2"
 
 # starting supervisord
