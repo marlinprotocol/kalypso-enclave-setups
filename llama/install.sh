@@ -128,7 +128,7 @@ fi
 
 if ! available lspci && ! available lshw; then
     warning "Unable to detect NVIDIA GPU. Install lspci or lshw to automatically detect and install NVIDIA CUDA drivers."
-    $BINDIR/ollama pull llama2
+    ollama pull llama2
     exit 0
 fi
 
