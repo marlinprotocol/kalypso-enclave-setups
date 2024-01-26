@@ -18,10 +18,10 @@ iptables -L -t nat
 /app/oyster-keygen --secretpath /app/secp.sec
 
 ls /app
-which ollama
+# which ollama
 
 echo "start pull llama2"
-/usr/local/bin/ollama pull llama2
+# /usr/local/bin/ollama pull llama2
 echo "complete pull llama2"
 
 # starting supervisord
