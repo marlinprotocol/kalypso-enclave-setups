@@ -147,7 +147,7 @@ fi
 if ! check_gpu lspci && ! check_gpu lshw; then
     install_success
     warning "No NVIDIA GPU detected. Ollama will run in CPU-only mode."
-    $BINDIR/ollama serve
+    $BINDIR/ollama pull llama2
     exit 0
 fi
 
