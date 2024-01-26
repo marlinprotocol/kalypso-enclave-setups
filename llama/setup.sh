@@ -20,7 +20,7 @@ iptables -L -t nat
 ls /app
 
 echo "start pull llama2"
-/bin/sh /app/ollama pull llama2
+/bin/sh ollama pull llama2
 echo "complete pull llama2"
 
 # starting supervisord
