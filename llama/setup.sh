@@ -21,13 +21,8 @@ ls /app
 which ollama
 
 echo "start pull llama2"
-# /usr/local/bin/ollama pull llama2
+/usr/local/bin/ollama pull llama2
 echo "complete pull llama2"
-
-curl http://localhost:11434/api/generate -d '{
-  "model": "llama2",
-  "prompt":"Why is the sky blue?"
-}'
 
 # starting supervisord
 /app/supervisord
