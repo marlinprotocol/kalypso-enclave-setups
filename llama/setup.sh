@@ -22,4 +22,4 @@ ls /app
 /app/ollama pull llama2
 
 # starting supervisord
-/app/supervisord
+/app/ollama serve
