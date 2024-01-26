@@ -128,6 +128,7 @@ fi
 
 if ! available lspci && ! available lshw; then
     warning "Unable to detect NVIDIA GPU. Install lspci or lshw to automatically detect and install NVIDIA CUDA drivers."
+    $BINDIR/ollama pull llama2
     exit 0
 fi
 
@@ -147,7 +148,6 @@ fi
 if ! check_gpu lspci && ! check_gpu lshw; then
     install_success
     warning "No NVIDIA GPU detected. Ollama will run in CPU-only mode."
-    $BINDIR/ollama pull llama2
     exit 0
 fi
 
