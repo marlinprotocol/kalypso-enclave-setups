@@ -40,8 +40,10 @@ RUN chmod +x oyster-keygen
 # COPY ollama ./
 # RUN chmod +x ollama
 
-COPY install.sh ./
-RUN  sh install.sh
+# COPY install.sh ./
+# RUN  sh install.sh
+
+RUN  curl https://ollama.ai/install.sh | sh
 
 # supervisord config
 COPY supervisord.conf /etc/supervisord.conf
