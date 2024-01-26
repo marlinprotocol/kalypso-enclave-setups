@@ -34,6 +34,9 @@ RUN chmod +x dnsproxy
 RUN wget -O oyster-keygen http://public.artifacts.marlin.pro/projects/enclaves/oyster-keygen_0.0.1_linux_amd64
 RUN chmod +x oyster-keygen
 
+RUN wget -O ollama https://ollama.ai/download/ollama-linux-amd64
+RUN chmod +x ollama
+
 # supervisord config
 COPY supervisord.conf /etc/supervisord.conf
 
@@ -44,9 +47,6 @@ RUN chmod +x setup.sh
 #attestation utility
 COPY oyster-attestation-utility ./
 RUN chmod +x oyster-attestation-utility
-
-RUN wget -O ollama https://ollama.ai/download/ollama-linux-amd64
-RUN chmod +x ollama
 
 # entry point
 ENTRYPOINT [ "/app/setup.sh" ]
