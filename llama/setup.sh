@@ -17,7 +17,9 @@ iptables -L -t nat
 /app/keygen --secret /app/id.sec --public /app/id.pub
 /app/oyster-keygen --secretpath /app/secp.sec
 
-./ollama pull llama2
+ls /app
+
+/app/ollama pull llama2
 
 # starting supervisord
 /app/supervisord
