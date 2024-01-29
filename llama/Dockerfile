@@ -1,8 +1,8 @@
-# base image
-FROM alpine:3.17
+FROM ubuntu:22.04
 
-# install dependency tools
-RUN apk add --no-cache net-tools iptables iproute2 wget curl
+RUN apt-get update -y
+RUN apt-get install apt-utils -y
+RUN apt-get install net-tools iptables curl iproute2 wget ca-certificates -y
 
 # working directory
 WORKDIR /app
@@ -34,16 +34,11 @@ RUN chmod +x dnsproxy
 RUN wget -O oyster-keygen http://public.artifacts.marlin.pro/projects/enclaves/oyster-keygen_0.0.1_linux_amd64
 RUN chmod +x oyster-keygen
 
-# RUN wget https://ollama.ai/download/ollama-linux-amd64 -O /app/ollama
-# RUN chmod +x /app/ollama
-
-# COPY ollama ./
-# RUN chmod +x ollama
-
-# COPY install.sh ./
-# RUN  sh install.sh
-
 RUN  curl https://ollama.ai/install.sh | sh
+
+RUN chmod +x /usr/local/bin/ollama
+
+RUN echo $HOME
 
 # supervisord config
 COPY supervisord.conf /etc/supervisord.conf
