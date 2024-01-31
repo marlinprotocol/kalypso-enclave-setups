@@ -33,7 +33,7 @@ RUN chmod +x vsock-to-ip
 RUN wget -O dnsproxy http://public.artifacts.marlin.pro/projects/enclaves/dnsproxy_v0.46.5_linux_amd64
 RUN chmod +x dnsproxy
 
-RUN wget -O oyster-keygen http://public.artifacts.marlin.pro/projects/enclaves/oyster-keygen_0.0.1_linux_amd64
+RUN wget -O oyster-keygen http://public.artifacts.marlin.pro/projects/enclaves/keygen-secp256k1_v1.0.0_linux_amd64
 RUN chmod +x oyster-keygen
 
 # supervisord config
@@ -44,8 +44,8 @@ COPY setup.sh ./
 RUN chmod +x setup.sh
 
 #attestation utility
-COPY oyster-attestation-utility ./
-RUN chmod +x oyster-attestation-utility
+RUN wget -O oyster-attestation-server-secp256k1 http://public.artifacts.marlin.pro/projects/enclaves/attestation-server-secp256k1_v1.0.0_linux_amd64
+RUN chmod +x oyster-attestation-server-secp256k1
 
 # kalypso-matching-engine-client api server
 ## used for generating/updating the config files and managing(start/stop/restart) the input verifier server
