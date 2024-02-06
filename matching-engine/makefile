@@ -1,20 +1,21 @@
-PROJECTS := kalypso-matching-engine kalypso-matching-engine-client oyster-attestation-server-secp256k1
+PROJECTS := kalypso-matching-engine kalypso-matching-engine-client oyster-attestation-utility
 
 all: $(PROJECTS)
 
 kalypso-matching-engine:
 	@echo "Building kalypso-matching-engine... "
-	@cd dependencies/kalypso-matching-engine && cargo build
+	@cd dependencies/kalypso-matching-engine && cargo build --release
+	@cp dependencies/kalypso-matching-engine/target/x86_64-unknown-linux-musl/release/kalypso-matching-engine kalypso-matching-engine
 
 kalypso-matching-engine-client:
 	@echo "Building kalypso-matching-engine-client... "
-	@cd dependencies/kalypso-matching-engine-client && cargo build
-	@cp dependencies/kalypso-matching-engine-client/target/x86_64-unknown-linux-musl/debug/kalypso-matching-engine-client kalypso-matching-engine-client
+	@cd dependencies/kalypso-matching-engine-client && cargo build --release
+	@cp dependencies/kalypso-matching-engine-client/target/x86_64-unknown-linux-musl/release/kalypso-matching-engine-client kalypso-matching-engine-client
 
-oyster-attestation-server-secp256k1:
+oyster-attestation-utility:
 	@echo "Building oyster-attestation-utility... "
-	@cd dependencies/oyster-attestation-server-secp256k1 && cargo build
-	@cp dependencies/oyster-attestation-server-secp256k1/target/debug/oyster-attestation-server-secp256k1 oyster-attestation-utility 
+	@cd dependencies/oyster-attestation-server-secp256k1 && cargo build --release
+	@cp dependencies/oyster-attestation-server-secp256k1/target/release/oyster-attestation-server-secp256k1 oyster-attestation-utility 
 
 .PHONY: clone-repos
 clone-repos:
@@ -32,4 +33,8 @@ pull-repo:
 	@cd dependencies/oyster-attestation-server-secp256k1 && git pull
 
 .PHONY: clean
+clean:
 	@rm -rf dependencies
+	@rm kalypso-matching-engine
+	@rm kalypso-matching-engine-client
+	@rm oyster-attestation-utility
