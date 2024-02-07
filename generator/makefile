@@ -38,4 +38,3 @@ clean:
 	@rm generator-client
 	@rm kalypso-generator
 	@rm -rf dependencies
-	
