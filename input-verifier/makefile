@@ -38,3 +38,4 @@ clean:
 	@rm oyster-attestation-utility 
 	@rm kalypso-zkb-input-verifier-client
 	@rm zkb_input_verifier
+	
