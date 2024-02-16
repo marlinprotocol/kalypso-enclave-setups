@@ -45,11 +45,6 @@ RUN chmod +x setup.sh
 RUN wget -O oyster-attestation-utility http://public.artifacts.marlin.pro/projects/enclaves/attestation-server-secp256k1_v1.0.0_linux_amd64
 RUN chmod +x oyster-attestation-utility
 
-# kalypso-zkb-input-verifier-client api server
-## used for generating/updating the config files and managing(start/stop/restart) the input verifier server
-COPY kalypso-zkb-input-verifier-client ./
-RUN chmod +x kalypso-zkb-input-verifier-client
-
 # input verifier server-used for verifying inputs
 COPY my_bench ./
 RUN chmod +x my_bench
