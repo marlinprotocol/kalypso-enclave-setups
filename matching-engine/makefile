@@ -35,6 +35,4 @@ pull-repo:
 .PHONY: clean
 clean:
 	@rm -rf dependencies
-	@rm kalypso-matching-engine
-	@rm kalypso-matching-engine-client
-	@rm oyster-attestation-utility
+	@rm -f kalypso-matching-engine kalypso-matching-engine-client oyster-attestation-utility

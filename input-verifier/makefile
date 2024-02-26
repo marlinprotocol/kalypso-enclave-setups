@@ -35,6 +35,4 @@ pull-repo:
 .PHONY: clean
 clean:
 	@rm -rf dependencies
-	@rm oyster-attestation-utility 
-	@rm kalypso-zkb-input-verifier-client
-	@rm zkb_input_verifier
+	@rm -f oyster-attestation-utility kalypso-zkb-input-verifier-client zkb_input_verifier

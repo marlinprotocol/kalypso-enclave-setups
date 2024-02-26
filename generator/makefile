@@ -34,7 +34,5 @@ pull-repo:
 
 .PHONY: clean
 clean:
-	@rm oyster-attestation-utility
-	@rm generator-client
-	@rm kalypso-generator
+	@rm -f oyster-attestation-utility generator-client kalypso-generator
 	@rm -rf dependencies
