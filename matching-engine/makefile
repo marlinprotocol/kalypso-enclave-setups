@@ -5,7 +5,7 @@ all: $(PROJECTS)
 kalypso-matching-engine:
 	@echo "Building kalypso-matching-engine... "
 	@cd dependencies/kalypso-matching-engine && cargo build --release
-	@cp dependencies/kalypso-matching-engine/target/x86_64-unknown-linux-musl/release/kalypso-matching-engine kalypso-matching-engine
+	@cp dependencies/kalypso-matching-engine/target/x86_64-unknown-linux-musl/release/matching-engine kalypso-matching-engine
 
 kalypso-matching-engine-client:
 	@echo "Building kalypso-matching-engine-client... "
