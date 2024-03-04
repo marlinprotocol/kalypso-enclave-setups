@@ -4,20 +4,31 @@ FROM alpine:3.17
 # install dependency tools
 RUN apk add --no-cache net-tools iptables iproute2 wget
 
-RUN apk update && apk add redis postgresql
+RUN apk update && apk add redis postgresql postgresql-client
 
-# Additional setup for Redis and PostgreSQL can go here
-# For example, configuring Redis to run in the background:
+# Configure Redis to run in the background (optional)
 RUN sed -i 's/^# \(bind .*\)$/\1/' /etc/redis.conf
 RUN sed -i 's/^# \(protected-mode no\)$/\1/' /etc/redis.conf
 RUN echo 'daemonize yes' >> /etc/redis.conf
 
-# Initialize PostgreSQL database
-# Note: This is a very basic setup. For production, you would need to secure and configure the databases according to your needs.
-RUN mkdir /run/postgresql
-RUN chown postgres:postgres /run/postgresql
+# Initialize the PostgreSQL data directory
+RUN mkdir /var/lib/postgresql/data && chown -R postgres:postgres /var/lib/postgresql
 USER postgres
 RUN initdb -D /var/lib/postgresql/data
+
+# Set environment variables for PostgreSQL
+# Replace 'your_username' and 'your_password' with your desired username and password
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=postgres
+ENV POSTGRES_DB=postgres
+
+# Create a PostgreSQL user and database
+RUN echo "CREATE DATABASE $POSTGRES_DB;" > /tmp/db.sql
+RUN echo "CREATE USER $POSTGRES_USER WITH ENCRYPTED PASSWORD '$POSTGRES_PASSWORD';" >> /tmp/db.sql
+RUN echo "GRANT ALL PRIVILEGES ON DATABASE $POSTGRES_DB TO $POSTGRES_USER;" >> /tmp/db.sql
+RUN pg_ctl start -D /var/lib/postgresql/data && psql -f /tmp/db.sql && pg_ctl stop -D /var/lib/postgresql/data
+
+EXPOSE 6379 5432
 
 # working directory
 WORKDIR /app
