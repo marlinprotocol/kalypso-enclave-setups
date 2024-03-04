@@ -53,7 +53,6 @@ ENV GO_VERSION 1.22
 
 RUN wget -O go.tar.gz https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz \
     && tar -C /usr/local -xzf go.tar.gz \
-    && rm go.tar.gz
 
 # Set environment variables to recognize Go
 ENV PATH="/usr/local/go/bin:${PATH}"
