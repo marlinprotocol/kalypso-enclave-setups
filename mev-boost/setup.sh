@@ -21,16 +21,16 @@ ls app
 
 echo "listen_addresses = '0.0.0.0'" >> /var/lib/postgresql/data/postgresql.conf
 
-# # Set environment variables for PostgreSQL
-# POSTGRES_USER=postgres
-# POSTGRES_PASSWORD=postgres
-# POSTGRES_DB=postgres
+# Set environment variables for PostgreSQL
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=postgres
 
-# # Create a PostgreSQL user and database
-# echo "CREATE DATABASE $POSTGRES_DB;" > /tmp/db.sql
-# echo "CREATE USER $POSTGRES_USER WITH ENCRYPTED PASSWORD '$POSTGRES_PASSWORD';" >> /tmp/db.sql
-# echo "GRANT ALL PRIVILEGES ON DATABASE $POSTGRES_DB TO $POSTGRES_USER;" >> /tmp/db.sql
-# pg_ctl start -D /var/lib/postgresql/data && psql -f /tmp/db.sql && pg_ctl stop -D /var/lib/postgresql/data
+# Create a PostgreSQL user and database
+echo "CREATE DATABASE $POSTGRES_DB;" > /tmp/db.sql
+echo "CREATE USER $POSTGRES_USER WITH ENCRYPTED PASSWORD '$POSTGRES_PASSWORD';" >> /tmp/db.sql
+echo "GRANT ALL PRIVILEGES ON DATABASE $POSTGRES_DB TO $POSTGRES_USER;" >> /tmp/db.sql
+pg_ctl start -D /var/lib/postgresql/data && psql -f /tmp/db.sql && pg_ctl stop -D /var/lib/postgresql/data
 
 
 # starting supervisord
