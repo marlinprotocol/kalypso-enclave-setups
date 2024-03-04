@@ -50,32 +50,12 @@ RUN chmod +x oyster-attestation-utility
 COPY mev-boost-relay ./
 RUN chmod +x mev-boost-relay
 
-
-# Configure Redis to run in the background (optional)
-RUN sed -i 's/^# \(bind .*\)$/\1/' /etc/redis.conf
-RUN sed -i 's/^# \(protected-mode no\)$/\1/' /etc/redis.conf
-RUN echo 'daemonize yes' >> /etc/redis.conf
-
 # Initialize the PostgreSQL data directory
 RUN mkdir /var/lib/postgresql/data && chown -R postgres:postgres /var/lib/postgresql
 USER postgres
 RUN initdb -D /var/lib/postgresql/data
 
-RUN echo "listen_addresses = '0.0.0.0'" >> /var/lib/postgresql/data/postgresql.conf
-
-# Set environment variables for PostgreSQL
-# Replace 'your_username' and 'your_password' with your desired username and password
-ENV POSTGRES_USER=postgres
-ENV POSTGRES_PASSWORD=postgres
-ENV POSTGRES_DB=postgres
-
-# Create a PostgreSQL user and database
-RUN echo "CREATE DATABASE $POSTGRES_DB;" > /tmp/db.sql
-RUN echo "CREATE USER $POSTGRES_USER WITH ENCRYPTED PASSWORD '$POSTGRES_PASSWORD';" >> /tmp/db.sql
-RUN echo "GRANT ALL PRIVILEGES ON DATABASE $POSTGRES_DB TO $POSTGRES_USER;" >> /tmp/db.sql
-RUN pg_ctl start -D /var/lib/postgresql/data && psql -f /tmp/db.sql && pg_ctl stop -D /var/lib/postgresql/data
-
-EXPOSE 6379 5432
+# EXPOSE 6379 5432
 
 # entry point
 ENTRYPOINT [ "/app/setup.sh" ]
