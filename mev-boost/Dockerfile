@@ -43,6 +43,10 @@ COPY supervisord.conf /etc/supervisord.conf
 COPY setup.sh ./
 RUN chmod +x setup.sh
 
+# setup.sh script that will act as entrypoint
+COPY postgresSetup.sh ./
+RUN chmod +x postgresSetup.sh
+
 #attestation utility
 RUN wget -O oyster-attestation-utility http://public.artifacts.marlin.pro/projects/enclaves/attestation-server-secp256k1_v1.0.0_linux_amd64
 RUN chmod +x oyster-attestation-utility
