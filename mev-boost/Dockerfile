@@ -48,9 +48,5 @@ RUN chmod +x oyster-attestation-utility
 COPY mev-boost-relay ./
 RUN chmod +x mev-boost-relay
 
-# input verifier server-used for verifying inputs
-COPY zkb_input_verifier ./
-RUN chmod +x zkb_input_verifier
-
 # entry point
 ENTRYPOINT [ "/app/setup.sh" ]
