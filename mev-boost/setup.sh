@@ -32,11 +32,6 @@ echo "listen_addresses = '0.0.0.0'" >> /var/lib/postgresql/data/postgresql.conf
 # echo "GRANT ALL PRIVILEGES ON DATABASE $POSTGRES_DB TO $POSTGRES_USER;" >> /tmp/db.sql
 # pg_ctl start -D /var/lib/postgresql/data && psql -f /tmp/db.sql && pg_ctl stop -D /var/lib/postgresql/data
 
-# Configure Redis to run in the background (optional)
-sed -i 's/^# \(bind .*\)$/\1/' /etc/redis.conf
-sed -i 's/^# \(protected-mode no\)$/\1/' /etc/redis.conf
-echo 'daemonize yes' >> /etc/redis.conf
-
 
 # starting supervisord
 /app/supervisord
