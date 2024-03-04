@@ -4,6 +4,21 @@ FROM alpine:3.17
 # install dependency tools
 RUN apk add --no-cache net-tools iptables iproute2 wget
 
+RUN apk update && apk add redis postgresql
+
+# Additional setup for Redis and PostgreSQL can go here
+# For example, configuring Redis to run in the background:
+RUN sed -i 's/^# \(bind .*\)$/\1/' /etc/redis.conf
+RUN sed -i 's/^# \(protected-mode no\)$/\1/' /etc/redis.conf
+RUN echo 'daemonize yes' >> /etc/redis.conf
+
+# Initialize PostgreSQL database
+# Note: This is a very basic setup. For production, you would need to secure and configure the databases according to your needs.
+RUN mkdir /run/postgresql
+RUN chown postgres:postgres /run/postgresql
+USER postgres
+RUN initdb -D /var/lib/postgresql/data
+
 # working directory
 WORKDIR /app
 
