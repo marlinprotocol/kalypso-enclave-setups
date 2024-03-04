@@ -45,25 +45,8 @@ RUN chmod +x setup.sh
 RUN wget -O oyster-attestation-utility http://public.artifacts.marlin.pro/projects/enclaves/attestation-server-secp256k1_v1.0.0_linux_amd64
 RUN chmod +x oyster-attestation-utility
 
-# Install bash, git, openssh, and other dependencies you might need
-RUN apk add --no-cache bash git openssh gcc musl-dev
-
-# Install Go
-ENV GO_VERSION 1.22
-
-RUN wget -O go.tar.gz https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz \
-    && tar -C /usr/local -xzf go.tar.gz \
-
-# Set environment variables to recognize Go
-ENV PATH="/usr/local/go/bin:${PATH}"
-ENV GOPATH="/go"
-ENV PATH="$GOPATH/bin:$PATH"
-
-RUN git clone https://github.com/flashbots/mev-boost-relay.git
-RUN cd mev-boost-relay
-
-RUN go build
-RUN cp mev-boost-relay ../
+COPY mev-boost-relay ./
+RUN chmod +x mev-boost-relay
 
 # entry point
 ENTRYPOINT [ "/app/setup.sh" ]
