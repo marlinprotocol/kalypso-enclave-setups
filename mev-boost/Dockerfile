@@ -50,11 +50,6 @@ RUN chmod +x oyster-attestation-utility
 COPY mev-boost-relay ./
 RUN chmod +x mev-boost-relay
 
-# Initialize the PostgreSQL data directory
-RUN mkdir /var/lib/postgresql/data && chown -R postgres:postgres /var/lib/postgresql
-USER postgres
-RUN initdb -D /var/lib/postgresql/data
-
 # EXPOSE 6379 5432
 
 # entry point
