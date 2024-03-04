@@ -3,37 +3,32 @@
 # Install PostgreSQL and its client
 apk add postgresql postgresql-client
 
-# Define PostgreSQL data directory
+# Define PostgreSQL data directory and ensure it is accessible
 PGDATA="/var/lib/postgresql/data"
+mkdir -p $PGDATA
+chown -R postgres:postgres /var/lib/postgresql
 
-# Ensure the PostgreSQL data directory is owned by the 'postgres' user
-chown postgres:postgres /var/lib/postgresql
+# Initialize the database
+su - postgres -c "initdb $PGDATA"
 
-# Switch to the 'postgres' user and initialize the database cluster
-su - postgres -c "initdb -D '$PGDATA'"
-
-# Modify postgresql.conf to listen on all addresses
+# Update postgresql.conf to listen on all interfaces
 echo "listen_addresses='*'" >> "$PGDATA/postgresql.conf"
 
-# Modify the pg_hba.conf file for md5 password authentication for IPv4 and IPv6
-echo "host    all             all             0.0.0.0/0               md5" >> "$PGDATA/pg_hba.conf"
-echo "host    all             all             ::/0                    md5" >> "$PGDATA/pg_hba.conf"
+# Update pg_hba.conf for md5 authentication over IPv4 and IPv6
+cat << EOF >> "$PGDATA/pg_hba.conf"
+host    all             all             0.0.0.0/0               md5
+host    all             all             ::/0                    md5
+EOF
 
-# Start PostgreSQL
-rc-service postgresql start || { echo "Failed to start PostgreSQL"; exit 1; }
-rc-update add postgresql default
+# Manually start PostgreSQL using pg_ctl
+su - postgres -c "pg_ctl -D $PGDATA start"
 
-# Create a user and a database
+# Sleep for a few seconds to ensure PostgreSQL starts up
+sleep 5
+
+# Create the user and database
 su - postgres -c "psql -c \"CREATE USER postgres WITH ENCRYPTED PASSWORD 'postgres';\""
 su - postgres -c "psql -c \"CREATE DATABASE postgres;\""
 su - postgres -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;\""
 
-# Restart PostgreSQL to apply changes
-rc-service postgresql restart
-
-# Verify PostgreSQL is running
-if rc-service postgresql status | grep -q "started"; then
-    echo "PostgreSQL setup completed and running."
-else
-    echo "Failed to start PostgreSQL."
-fi
+echo "PostgreSQL setup completed."
