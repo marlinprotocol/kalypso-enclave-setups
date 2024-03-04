@@ -3,10 +3,15 @@
 # Install PostgreSQL and its client
 apk add postgresql postgresql-client
 
-# Define PostgreSQL data directory and ensure it is accessible
+# Define PostgreSQL data directory
 PGDATA="/var/lib/postgresql/data"
 mkdir -p $PGDATA
 chown -R postgres:postgres /var/lib/postgresql
+
+# Ensure the runtime directory exists and has correct permissions
+mkdir -p /run/postgresql
+chown -R postgres:postgres /run/postgresql
+chmod 2777 /run/postgresql
 
 # Initialize the database
 su - postgres -c "initdb $PGDATA"
