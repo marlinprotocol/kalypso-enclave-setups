@@ -6,6 +6,8 @@ RUN apk add --no-cache net-tools iptables iproute2 wget
 
 RUN apk update && apk add redis postgresql postgresql-client
 
+RUN apk add curl
+
 # working directory
 WORKDIR /app
 
