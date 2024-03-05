@@ -21,4 +21,4 @@ ls app
 
 /app/postgresSetup.sh
 # starting supervisord
-LISTEN_ADDR=46.4.77.113:9060 BEACON_URIS=http://46.4.77.113:5052 /app/supervisord
+LISTEN_ADDR=0.0.0.0 BEACON_URIS=http://46.4.77.113:5052 /app/supervisord
