@@ -56,7 +56,7 @@ RUN chmod +x oyster-attestation-utility
 COPY mev-boost-relay ./
 RUN chmod +x mev-boost-relay
 
-# EXPOSE 6379 5432
+COPY website-index.html ./
 
 # entry point
 ENTRYPOINT [ "/app/setup.sh" ]
