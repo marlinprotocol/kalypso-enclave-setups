@@ -21,4 +21,4 @@ ls app
 
 /app/postgresSetup.sh
 # starting supervisord
-/app/supervisord
+BEACON_URIS=http://46.4.77.113:9000 /app/supervisord
