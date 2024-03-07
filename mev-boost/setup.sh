@@ -19,8 +19,8 @@ iptables -L -t nat
 
 ls app
 
-/app/postgresSetup.sh
 /app/nginxSetup.sh
+/app/postgresSetup.sh
 
 # starting supervisord
 /app/supervisord
