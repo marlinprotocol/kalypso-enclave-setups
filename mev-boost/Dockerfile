@@ -4,7 +4,7 @@ FROM alpine:3.17
 # install dependency tools
 RUN apk add --no-cache net-tools iptables iproute2 wget
 
-RUN apk update && apk add redis
+RUN apk update && apk add redis postgresql postgresql-client
 
 RUN apk add curl
 

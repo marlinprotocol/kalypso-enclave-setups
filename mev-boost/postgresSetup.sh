@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Install PostgreSQL and its client
-apk add postgresql postgresql-client
+# # Install PostgreSQL and its client
+# apk add postgresql postgresql-client
 
 # Define PostgreSQL data directory
 PGDATA="/var/lib/postgresql/data"
