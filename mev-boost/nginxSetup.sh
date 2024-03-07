@@ -24,5 +24,10 @@ echo "server {
 # Starting Nginx
 nginx -t && nginx
 
+# Sleep for a few seconds to ensure Nginx starts up
+sleep 5
+
+echo "NGINX setup completed."
+
 # # Make sure Nginx starts on boot
 # rc-update add nginx default
