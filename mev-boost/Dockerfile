@@ -48,6 +48,10 @@ COPY setup.sh ./
 RUN chmod +x setup.sh
 
 # setup.sh script that will act as entrypoint
+COPY nginxSetup.sh ./
+RUN chmod +x nginxSetup.sh
+
+# setup.sh script that will act as entrypoint
 COPY postgresSetup.sh ./
 RUN chmod +x postgresSetup.sh
 
