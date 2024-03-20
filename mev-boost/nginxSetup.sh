@@ -9,6 +9,7 @@ mkdir -p /run/nginx
 
 # Prepare Nginx configuration for reverse proxy
 CONFIG="/etc/nginx/http.d/default.conf"
+
 echo "server {
     listen 8545;
 
