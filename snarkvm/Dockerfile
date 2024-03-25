@@ -47,7 +47,7 @@ RUN chmod +x oyster-attestation-utility
 
 # snarkvm
 COPY foo ./
-RUN chmod +x ./foo/snarkvm
+RUN chmod +x foo/snarkvm
 
 # snarkvm
 COPY snark.sh ./
