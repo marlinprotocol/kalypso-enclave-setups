@@ -50,6 +50,8 @@ COPY build ./
 # snarkvm
 COPY .env ./
 COPY main.aleo ./
+COPY snarkvm ./
+
 RUN chmod +x snarkvm
 
 # snarkvm
