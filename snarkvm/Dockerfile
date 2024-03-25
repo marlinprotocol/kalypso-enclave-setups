@@ -46,8 +46,11 @@ RUN wget -O oyster-attestation-utility http://public.artifacts.marlin.pro/projec
 RUN chmod +x oyster-attestation-utility
 
 # snarkvm
-COPY foo ./
-RUN chmod +x foo/snarkvm
+COPY build ./
+# snarkvm
+COPY .env ./
+COPY main.aleo ./
+RUN chmod +x snarkvm
 
 # snarkvm
 COPY snark.sh ./
