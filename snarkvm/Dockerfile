@@ -51,6 +51,7 @@ COPY build ./
 COPY .env ./
 COPY main.aleo ./
 COPY snarkvm ./
+COPY program.json ./
 
 RUN chmod +x snarkvm
 
