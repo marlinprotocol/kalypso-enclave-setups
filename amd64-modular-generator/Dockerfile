@@ -52,6 +52,8 @@ RUN chmod +x oyster-attestation-server-secp256k1
 COPY generator-client ./
 RUN chmod +x generator-client
 
+COPY test_inputs.json ./
+
 # generator-us
 COPY kalypso-listener ./
 RUN chmod +x kalypso-listener

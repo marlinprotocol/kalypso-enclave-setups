@@ -1,66 +1,80 @@
-# Kalypso generator
+## Steps to start the zkBob generator 
 
-Build and run the EIF with `./build.sh`
+1. Build the EIF file and start the oyster enclave.
+   ```
+   ./build.sh
+   ```
 
-EC2 Instance public IP : `43.205.85.160`
 
-## Steps to start the generator
+2. Register the generator with the help of KalypsoSDK
+   ```
+   yarn test ./test/generatorOperations/1_register.ts
+   ```
 
-1. Update the ECIES key with the help of KalypsoSDK
+3. Stake tokens with the help of KalypsoSDK
+   ```
+   yarn test ./test/generatorOperations/2_stake.ts
+   ```
+
+4. Join a marketplace with the help of KalypsoSDK
+   ```
+   yarn test ./test/generatorOperations/3_join_market_place.ts
+   ```
+
+5. Update the ECIES key with the help of KalypsoSDK
     ```
-    yarn test ./test/generatorOperations/update_ecies_key.ts
+   yarn test ./test/generatorOperations/4_update_ecies_key.ts
     ```
-2. Generate the config setup by making an HTTP call to the generator client:
+6. Generate the config setup by making an HTTP call to the generator client:
     ```
-    curl --location --request POST 'http://43.205.85.160:5000/api/generatorConfigSetup' \
+   curl --location --request POST 'http://43.205.85.160:5000/api/generatorConfigSetup' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+       "generator_config": [
+       {
+         "address": "0x0469866e13cd7DF08f5482FBb127a72fF197365D",
+         "data": "Some data",
+         "supported_markets": [
+           "1"
+         ]
+       }
+     ],
+   
+     "runtime_config": {
+       "ws_url": "wss://arb-sepolia.g.alchemy.com/v2/********************",
+       "http_url": "https://arb-sepolia.g.alchemy.com/v2/*******************",
+       "start_block":29108940,
+       "private_key": "******************************",
+       "chain_id": 421614,
+       "payment_token": "0x01d84D33CC8636F83d2bb771e184cE57d8356863",
+       "staking_token": "0xdb69299dDE4A00c99b885D9f8748B2AeD1Fe4Ed4",
+       "attestation_verifier": "0x3aB3487269206d5f6a10725d4e477BaA3611adcA",
+       "entity_registry": "0xBf6AfC0dB112e1e330Ea3fF4640Bac5fBA3e4B65",
+       "proof_market_place": "0x81C80965f4E1b073858cc9D55d7D9A517C9fF258",
+       "generator_registry": "0x2CcCb1ac0fa40922bc800619E09fc3bD821ea4F8",
+       "markets":{
+           "1":{
+               "port":"6000",
+               "ivs_url":"****************"
+           }
+       }
+     }
+   
+   }'
+    ```
+7. Start the zkbob-generator by invoking the following API call
+    ```
+    curl --location --request POST 'http://43.205.85.160:5000/api/startProgram' \
     --header 'Content-Type: application/json' \
     --data-raw '{
-        "generator_config": [
-        {
-          "address": "0xbCa21b37A139723F5546b5951f00B42e8E9a7D85",
-          "data": "Some data",
-          "supported_markets": [
-            "0"
-          ]
-        }
-      ],
-    
-      "runtime_config": {
-        "ws_url": "wss://arb-sepolia.g.alchemy.com/v2/************",
-        "http_url": "https://arb-sepolia.g.alchemy.com/v2/***********",
-        "private_key": "***********************",
-        "start_block": 16440453,
-        "chain_id": 421614,
-        "payment_token": "0x01d84D33CC8636F83d2bb771e184cE57d8356863",
-        "staking_token": "0xdb69299dDE4A00c99b885D9f8748B2AeD1Fe4Ed4",
-        "attestation_verifier": "0x3D116255C2b06D7672a9512958d9a3FFD7Aea50c",
-        "entity_registry": "0xFa1004E359fd8Cb76a7D5F32b954eF5020Ea033c",
-        "proof_market_place": "0x27FDcb086Cdb0bCFa40638376CD3CbF5B8c69197",
-        "generator_registry": "0x008d842cA209690D9Da5431a94e193A7B93aC105",
-        "ivs_url":"http://43.205.177.43:3030/checkInput",
-        "markets":{
-            "0":"6000",
-            "1":"7000"
-        }
-      }
+        "program_name":"zkbob-generator"
     }'
     ```
-3. Start the zkbob-generator by invoking the following API call
+8. Start the kalypso-listener by invoking the following API call
     ```
-    curl --location --request POST 'http://43.205.85.160:5000/api/startGenerator' \
+    curl --location --request POST 'http://43.205.85.160:5000/api/startProgram' \
     --header 'Content-Type: application/json' \
     --data-raw '{
-        "generator_name":"zkbob-generator"
+        "program_name":"listener"
     }'
     ```
-4. Start the kalypso-listener by invoking the following API call
-    ```
-    curl --location --request POST 'http://43.205.85.160:5000/api/startGenerator' \
-    --header 'Content-Type: application/json' \
-    --data-raw '{
-        "generator_name":"listener"
-    }'
-    ```
-      
-
-
