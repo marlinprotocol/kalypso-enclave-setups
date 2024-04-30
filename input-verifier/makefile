@@ -29,7 +29,7 @@ clone-repos:
 pull-repo:
 	@echo "Pulling Repo"
 	@cd dependencies/zkb_input_verifier && git pull
-	@cd dependencies/kalypso-zkb-input-verifier-client && git pull
+	@cd dependencies/kalypso-unified && git pull
 	@cd dependencies/oyster-attestation-server-secp256k1 && git pull
 
 .PHONY: clean
