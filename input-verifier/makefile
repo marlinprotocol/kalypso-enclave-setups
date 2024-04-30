@@ -9,8 +9,8 @@ zkb_input_verifier:
 
 kalypso-zkb-input-verifier-client:
 	@echo "Building kalypso-zkb-input-verifier-client... "
-	@cd dependencies/kalypso-zkb-input-verifier-client && cargo build --release
-	@cp dependencies/kalypso-matching-engine-client/target/x86_64-unknown-linux-musl/release/kalypso-matching-engine-client kalypso-matching-engine-client
+	@cd dependencies/kalypso-unified && cargo build --release
+	@cp dependencies/kalypso-unified/target/x86_64-unknown-linux-musl/release/ivs_client kalypso-zkb-input-verifier-client
 
 oyster-attestation-server-secp256k1:
 	@echo "Building oyster-attestation-utility... "
@@ -21,7 +21,7 @@ oyster-attestation-server-secp256k1:
 clone-repos:
 	@echo "Cloning Repo"
 	@mkdir -p dependencies 
-	@cd dependencies && git clone https://github.com/marlinprotocol/kalypso-zkb-input-verifier-client.git
+	@cd dependencies && git clone https://github.com/marlinprotocol/kalypso-unified.git
 	@cd dependencies && git clone https://github.com/marlinprotocol/zkb_input_verifier.git
 	@cd dependencies && git clone https://github.com/marlinprotocol/oyster-attestation-server-secp256k1
 
