@@ -3,12 +3,12 @@ all: $(PROJECTS)
 
 kalypso-listener:
 	@echo "Building kalypso-listener... "
-	@cd dependencies/kalypso-listener && cargo build --release
-	@cp dependencies/kalypso-listener/target/x86_64-unknown-linux-musl/release/kalypso-listener kalypso-listener
+	@cd dependencies/kalypso-unified && cargo build --release -p listener
+	@cp dependencies/kalypso-listener/target/x86_64-unknown-linux-musl/release/listener kalypso-listener
 
 generator-client:
 	@echo "Building generator-client... "
-	@cd dependencies/generator-client && cargo build --release
+	@cd dependencies/kalypso-unified && cargo build --release -p generator_client
 	@cp dependencies/generator-client/target/x86_64-unknown-linux-musl/release/generator-client generator-client
 
 zkbob-generator:
@@ -25,17 +25,15 @@ oyster-attestation-utility:
 clone-repos:
 	@echo "Cloning Repo"
 	@mkdir -p dependencies 
-	@cd dependencies && git clone https://github.com/marlinprotocol/kalypso-listener.git
-	@cd dependencies && git clone https://github.com/marlinprotocol/generator-client.git
+	@cd dependencies && git clone https://github.com/marlinprotocol/kalypso-unified.git
 	@cd dependencies && git clone https://github.com/marlinprotocol/zkbob-generator.git
 	@cd dependencies && git clone https://github.com/marlinprotocol/oyster-attestation-server-secp256k1
 
 .PHONY: pull-repo
 pull-repo:   
 	@echo "Pulling Repo"
-	@cd dependencies/kalypso-listener && git pull
-	@cd dependencies/generator-client && git pull
 	@cd dependencies/zkbob-generator && git pull
+	@cd dependencies && git clone https://github.com/marlinprotocol/kalypso-unified.git
 	@cd dependencies/oyster-attestation-server-secp256k1 && git pull
 
 .PHONY: clean

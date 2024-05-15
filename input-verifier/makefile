@@ -9,7 +9,7 @@ zkb_input_verifier:
 
 kalypso-zkb-input-verifier-client:
 	@echo "Building kalypso-zkb-input-verifier-client... "
-	@cd dependencies/kalypso-unified && cargo build --release
+	@cd dependencies/kalypso-unified && cargo build --release -p ivs_client
 	@cp dependencies/kalypso-unified/target/x86_64-unknown-linux-musl/release/ivs_client kalypso-zkb-input-verifier-client
 
 oyster-attestation-server-secp256k1:
