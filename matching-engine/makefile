@@ -4,12 +4,12 @@ all: $(PROJECTS)
 
 kalypso-matching-engine:
 	@echo "Building kalypso-matching-engine... "
-	@cd dependencies/kalypso-unified && cargo build --release
+	@cd dependencies/kalypso-unified && cargo build --release -p matching_engine
 	@cp dependencies/kalypso-unified/target/x86_64-unknown-linux-musl/release/matching_engine matching_engine
 
 kalypso-matching-engine-client:
 	@echo "Building kalypso-matching-engine-client... "
-	@cd dependencies/kalypso-unified && cargo build --release
+	@cd dependencies/kalypso-unified && cargo build --release -p matching_engine_client
 	@cp dependencies/kalypso-unified/target/x86_64-unknown-linux-musl/release/matching_engine_client kalypso-matching-engine-client
 
 oyster-attestation-utility:
