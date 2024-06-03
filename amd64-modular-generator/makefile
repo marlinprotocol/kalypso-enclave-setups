@@ -4,12 +4,12 @@ all: $(PROJECTS)
 kalypso-listener:
 	@echo "Building kalypso-listener... "
 	@cd dependencies/kalypso-unified && cargo build --release -p listener
-	@cp dependencies/kalypso-listener/target/x86_64-unknown-linux-musl/release/listener kalypso-listener
+	@cp dependencies/kalypso-unified/target/x86_64-unknown-linux-musl/release/listener kalypso-listener
 
 generator-client:
 	@echo "Building generator-client... "
 	@cd dependencies/kalypso-unified && cargo build --release -p generator_client
-	@cp dependencies/generator-client/target/x86_64-unknown-linux-musl/release/generator-client generator-client
+	@cp dependencies/kalypso-unified/target/x86_64-unknown-linux-musl/release/generator-client generator-client
 
 zkbob-generator:
 	@echo "Building zkbob-generator... "

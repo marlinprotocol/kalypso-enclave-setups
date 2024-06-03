@@ -10,7 +10,7 @@ kalypso-generator:
 generator-client:
 	@echo "Building generator-client... "
 	@cd dependencies/kalypso-unified && cargo build --release -p generator_client
-	@cp dependencies/generator-client/target/x86_64-unknown-linux-musl/release/generator-client generator-client
+	@cp dependencies/kalypso-unified/target/x86_64-unknown-linux-musl/release/generator-client generator-client
 
 oyster-attestation-utility:
 	@echo "Building oyster-attestation-utility... "
