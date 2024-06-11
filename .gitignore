@@ -1,3 +1,5 @@
 **/.DS_Store
 nitro-enclave.eif
 dependencies
+demo_keys/keygen
+demo_keys/oyster-keygen
