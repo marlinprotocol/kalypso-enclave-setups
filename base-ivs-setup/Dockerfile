@@ -4,6 +4,8 @@ FROM alpine:3.17
 # install dependency tools
 RUN apk add --no-cache net-tools iptables iproute2 wget
 
+COPY transfer_params.bin ./params/transfer_params_prod.bin
+
 # working directory
 WORKDIR /app
 
@@ -20,7 +22,7 @@ RUN wget -O keygen http://public.artifacts.marlin.pro/projects/enclaves/keygen_v
 RUN chmod +x keygen
 
 # attestation server inside the enclave that generates attestations
-RUN wget -O attestation-server http://public.artifacts.marlin.pro/projects/enclaves/attestation-server_v1.0.0_linux_amd64
+RUN wget -O attestation-server http://public.artifacts.marlin.pro/projects/enclaves/attestation-server_v2.0.0_linux_amd64
 RUN chmod +x attestation-server
 
 # proxy to expose attestation server outside the enclave
@@ -40,10 +42,6 @@ COPY supervisord.conf /etc/supervisord.conf
 # setup.sh script that will act as entrypoint
 COPY setup.sh ./
 RUN chmod +x setup.sh
-
-#attestation utility
-RUN wget -O oyster-attestation-utility http://public.artifacts.marlin.pro/projects/enclaves/attestation-server-secp256k1_v1.0.0_linux_amd64
-RUN chmod +x oyster-attestation-utility
 
 # entry point
 ENTRYPOINT [ "/app/setup.sh" ]
