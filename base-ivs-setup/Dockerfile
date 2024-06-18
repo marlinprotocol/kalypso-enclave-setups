@@ -39,6 +39,9 @@ RUN chmod +x oyster-keygen
 # supervisord config
 COPY supervisord.conf /etc/supervisord.conf
 
+COPY input-verification-executable ./
+RUN chmod +x input-verification-executable
+
 # setup.sh script that will act as entrypoint
 COPY setup.sh ./
 RUN chmod +x setup.sh
